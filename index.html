@@ -22,6 +22,11 @@
             background-color: #000000;
         }
 
+        /* Hide login container when logged in */
+        .logged-in .login-container {
+            display: none;
+        }
+
         /* Login form styling */
         .login-container {
             background-color: white;
@@ -109,8 +114,11 @@
             } else {
                 // Failed login
                 alert('Invalid credentials! Please try again.');
+                // Clear form fields
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
             }
         });
     </script>
 </body>
-  </html>
+</html>
