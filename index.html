@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tangerine Authentication</title>
+    <style>
+        /* Initial blue background style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #0077be;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Logged-in state styles */
+        body.logged-in {
+            background-color: #000000;
+        }
+
+        /* Login form styling */
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        input {
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            width: 200px;
+        }
+
+        button {
+            background-color: #0077be;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Tangerine emoji styling */
+        #tangerine {
+            font-size: 8rem;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logged-in #tangerine {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="login-container">
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Tangerine Display -->
+    <div id="tangerine">🍊</div>
+
+    <script>
+        // Valid credentials
+        const VALID_USERNAME = 'Tangerine08';
+        const VALID_PASSWORD = 'CitrusWaves88';
+
+        // Check authentication status on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('authenticated')) {
+                document.body.classList.add('logged-in');
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if(username === VALID_USERNAME && password === VALID_PASSWORD) {
+                // Successful login
+                document.body.classList.add('logged-in');
+                localStorage.setItem('authenticated', 'true');
+            } else {
+                // Failed login
+                alert('Invalid credentials! Please try again.');
+            }
+        });
+    </script>
+</body>
+  </html>
